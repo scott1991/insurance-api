@@ -1,0 +1,28 @@
+{
+  "development": {
+    "username": "",
+    "password": "",
+    "database": "insurance",
+    "host": "127.0.0.1",
+    "logging": false,
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8mb4",
+      "collate": "utf8mb4_unicode_ci",
+      "timestamps": true
+    }
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "insurance",
+    "host": "127.0.0.1",
+    "logging": false,
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8mb4",
+      "collate": "utf8mb4_unicode_ci",
+      "timestamps": true
+    }
+  }
+}
