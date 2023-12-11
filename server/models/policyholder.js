@@ -9,7 +9,7 @@ export default (sequelize) => {
     },
     code: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -39,13 +39,20 @@ export default (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     }
-  }, {});
+  }, {
+    indexes: [
+      {
+        unique: true,
+        fields: ['code']
+      }
+    ]
+  });
 
-    Policyholder.associate = (models) => {
-      Policyholder.belongsTo(models.Policyholder, { as: 'parent', foreignKey: 'parent_id' });
-      Policyholder.hasOne(models.Policyholder, { as: 'lchild', foreignKey: 'lchild_id' });
-      Policyholder.hasOne(models.Policyholder, { as: 'rchild', foreignKey: 'rchild_id' });
-    };
+  Policyholder.associate = (models) => {
+    Policyholder.belongsTo(models.Policyholder, { as: 'parent', foreignKey: 'parent_id' });
+    Policyholder.hasOne(models.Policyholder, { as: 'lchild', foreignKey: 'lchild_id' });
+    Policyholder.hasOne(models.Policyholder, { as: 'rchild', foreignKey: 'rchild_id' });
+  };
 
   return Policyholder;
 };
