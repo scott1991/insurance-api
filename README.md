@@ -16,5 +16,6 @@ Note
 - 使用sequelize來定義資料庫，方便切換DB如SQL Server, MySQL
 - 匯入sample data，由於關聯性問題會先INSERT再UPDATE
 - `server/tests/tree.html`內有範例樹狀圖
-
+- 由於保留了可以製作完整樹的功能，中間使用了較複雜的資料結構
+- 根據層數搜尋，如四層有四個query。只有整理資料使用部份遞迴
 
