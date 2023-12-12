@@ -3,18 +3,18 @@
 Getting Started
 ---------------
 
-```sh
-git clone https://github.com/scott1991/express-es6-spa-example <project-name>
-cd <project-name>
-npx rimraf ./.git
-git init
-npm init
-```
+- 重命名 `server/config/config.json.example` to `server/config/config.json`
+- 編輯 `config.json`
+- 在DB中新建資料庫
+- `npm start` 會自動建立table `policyholders`
+- 執行 `server/tests/importsample.js` 將會匯入sample data
 
-Add React SPA
+Note
 ---------------
-```sh
-sh create_reactSPA.sh
-```
-It will use creat-react-app and set .env to bind different port 3001 instead of express server port(3000)
-And set proxy 'http://localhost:3000' to redirect api call in React app.
+- 專案使用express ES6 modules, import
+- 專案使用ES6 Importing JSON modules，目前須使用 node version > 16
+- 使用sequelize來定義資料庫，方便切換DB如SQL Server, MySQL
+- 匯入sample data，由於關聯性問題會先INSERT再UPDATE
+- `server/tests/tree.html`內有範例樹狀圖
+
+

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Binary Tree with Go.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/2.1.53/go.js"></script>
+</head>
+<body>
+    <div id="myDiagramDiv" style="width: 100%; height: 1000px;"></div>
+
+    <script>
+        // 数据
+        var treeData = [
+  {
+    "id": 1,
+    "code": "000001",
+    "name": "AAAAAA",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "",
+    "depth": 1,
+    "parent_id": "",
+    "lchild_id": 2,
+    "rchild_id": 3,
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 2,
+    "code": "000002",
+    "name": "BBBBBB",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000001",
+    "depth": 2,
+    "parent_id": 1,
+    "lchild_id": 4,
+    "rchild_id": 6,
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 3,
+    "code": "000003",
+    "name": "CCCCCC",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000001",
+    "depth": 2,
+    "parent_id": 1,
+    "lchild_id": 5,
+    "rchild_id": 7,
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 4,
+    "code": "000004",
+    "name": "DDDDDD",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000001",
+    "depth": 3,
+    "parent_id": 2,
+    "lchild_id": 8,
+    "rchild_id": 9,
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 5,
+    "code": "000005",
+    "name": "EEEEEE",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000003",
+    "depth": 3,
+    "parent_id": 3,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 6,
+    "code": "000006",
+    "name": "FFFFFF",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000001",
+    "depth": 3,
+    "parent_id": 2,
+    "lchild_id": 10,
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 7,
+    "code": "000007",
+    "name": "GGGGGG",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000001",
+    "depth": 3,
+    "parent_id": 3,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 8,
+    "code": "000008",
+    "name": "HHHHHH",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000004",
+    "depth": 4,
+    "parent_id": 4,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 9,
+    "code": "000009",
+    "name": "IIIIII",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000001",
+    "depth": 4,
+    "parent_id": 4,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 10,
+    "code": "000010",
+    "name": "JJJJJJ",
+    "registration_date": "2023-12-11 00:00:00",
+    "introducer_code": "000002",
+    "depth": 4,
+    "parent_id": 6,
+    "lchild_id": 13,
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 11,
+    "code": "000011",
+    "name": "KKKKKK",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "",
+    "depth": 1,
+    "parent_id": "",
+    "lchild_id": 12,
+    "rchild_id": 14,
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 12,
+    "code": "000012",
+    "name": "LLLLLL",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000011",
+    "depth": 2,
+    "parent_id": 11,
+    "lchild_id": 15,
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 13,
+    "code": "000013",
+    "name": "L22222",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000010",
+    "depth": 5,
+    "parent_id": 10,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 14,
+    "code": "000014",
+    "name": "L33333",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000011",
+    "depth": 2,
+    "parent_id": 11,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 15,
+    "code": "000015",
+    "name": "L44444",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000011",
+    "depth": 3,
+    "parent_id": 12,
+    "lchild_id": 16,
+    "rchild_id": 17,
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 16,
+    "code": "000016",
+    "name": "MMMMMM",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000015",
+    "depth": 4,
+    "parent_id": 15,
+    "lchild_id": 18,
+    "rchild_id": 19,
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 17,
+    "code": "000017",
+    "name": "NNNNNN",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000015",
+    "depth": 4,
+    "parent_id": 15,
+    "lchild_id": 20,
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 18,
+    "code": "000018",
+    "name": "OOOOOO",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000015",
+    "depth": 5,
+    "parent_id": 16,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 19,
+    "code": "000019",
+    "name": "PPPPPP",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000016",
+    "depth": 5,
+    "parent_id": 16,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  },
+  {
+    "id": 20,
+    "code": "000020",
+    "name": "QQQQQQ",
+    "registration_date": "2023-12-12 00:00:00",
+    "introducer_code": "000015",
+    "depth": 5,
+    "parent_id": 17,
+    "lchild_id": "",
+    "rchild_id": "",
+    "createdAt": "2023-12-12 03:15:57",
+    "updatedAt": "2023-12-12 03:15:57"
+  }
+]
+
+for ( var i = 0 ; i < treeData.length ; i++ ){
+  treeData[i]['parent'] = treeData[i]['parent_id'] ? treeData[i]['parent_id'] : ""
+  treeData[i]['key'] = treeData[i]['id'];
+}
+
+        // 初始化Go.js图表
+        var $ = go.GraphObject.make;
+
+        var myDiagram = $(go.Diagram, "myDiagramDiv", {
+            initialAutoScale: go.Diagram.Uniform,
+            layout: $(go.TreeLayout, { angle: 90, layerSpacing: 50 })
+        });
+
+        // 定义节点模板
+myDiagram.nodeTemplate =
+    $(go.Node, "Auto",
+        $(go.Shape, "RoundedRectangle", { fill: "lightblue", stroke: "gray" }),
+        $(go.Panel, "Table",
+            { defaultAlignment: go.Spot.Left },
+            $(go.RowColumnDefinition, { column: 0, width: 10 }), // 空白列用于分隔标签
+            $(go.TextBlock, { row: 0, column: 1, margin: 2, font: "bold 14px sans-serif" }, "Code:"),
+            $(go.TextBlock, { row: 0, column: 2, margin: 2 }, new go.Binding("text", "code")),
+            $(go.TextBlock, { row: 1, column: 1, margin: 2, font: "bold 14px sans-serif" }, "Name:"),
+            $(go.TextBlock, { row: 1, column: 2, margin: 2 }, new go.Binding("text", "name")),
+            $(go.TextBlock, { row: 2, column: 1, margin: 2, font: "bold 14px sans-serif" }, "Introducer Code:"),
+            $(go.TextBlock, { row: 2, column: 2, margin: 2 }, new go.Binding("text", "introducer_code"))
+        )
+    );
+
+
+
+        // 创建图表模型
+        var model = $(go.TreeModel);
+        model.nodeDataArray = treeData;
+
+        // 将模型与图表关联
+        myDiagram.model = model;
+    </script>
+</body>
+</html>
