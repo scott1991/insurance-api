@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, '../spa')));
 
 app.use('/', indexRouter);
 
-// import add from './routes/add.js'
-// app.use('/api/add', add);
+import add from './routes/add.js'
+app.use('/api/add', add);
 import policyholders from './routes/policyholders.js' 
 app.use('/api/policyholders', policyholders);
 

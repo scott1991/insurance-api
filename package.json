@@ -9,7 +9,7 @@
     "spa": "npm start --prefix spa_src/",
     "dev": "npm-run-all --parallel start spa",
     "install-server": "npm install",
-    "install-all":"npm-run-all --parallel install-server install-spa"
+    "install-all": "npm-run-all --parallel install-server install-spa"
   },
   "type": "module",
   "dependencies": {
